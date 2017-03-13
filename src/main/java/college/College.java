@@ -34,7 +34,7 @@ public class College {
                         .build(),
         }));
         showStudents(college);
-        college.sort(new StudentNameComparator());
+        college.sort(Student.getNameComparator());
         showStudents(college);
     }
 }
