@@ -14,7 +14,7 @@ public class College {
     }
 
     public static void main(String[] args) {
-        List<Student> college = new ArrayList<>(Arrays.asList(
+        List<Student> college = new ArrayList<>(Arrays.asList(new Student[]{
                 Student.getByNameGpaCourses("Jim", 3.5F,
                         "Math", "Engineering", "Tribology"),
                 Student.getByNameGpaCourses("Sheila", 3.8F,
@@ -25,8 +25,14 @@ public class College {
                         .gpa(2.2F)
                         .course("Art History")
                         .course("Journalism")
-                        .build();
-        ));
+                        .build(),
+                Student.builder()
+                        .course("Art History")
+                        .name("William")
+                        .gpa(2.2F)
+                        .course("Journalism")
+                        .build(),
+        }));
         showStudents(college);
         college.sort(new StudentNameComparator());
         showStudents(college);

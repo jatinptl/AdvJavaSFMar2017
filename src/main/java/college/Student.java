@@ -1,9 +1,12 @@
 package college;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Student {
+
+    static int MAX_COURSES = 9;
 
     private String name;
     private float gpa;
@@ -15,31 +18,45 @@ public class Student {
         private Builder() {
             target = new Student();
         }
-        
-        private Builder name(String name) {
+
+        public Builder name(String name) {
             target.name = name;
             return this;
         }
-        
-        private Builder gpa(float gpa) {
+
+        public Builder gpa(float gpa) {
             target.gpa = gpa;
             return this;
         }
-        
-        private Builder course(String name) {
-            target.name = name;
+
+        public Builder course(String course) {
+            if (target.courses == null) {
+                target.courses = new ArrayList<String>();
+            }
+            target.courses.add(course);
             return this;
         }
+        public Student build() {
+            target.validate();
+            return target;
+        }
     }
-    
+
     public static Builder builder() {
         return new Builder();
+    }
+
+    public void validate() {
+        StringBuilder sb = new StringBuilder();
+        if (name == null) sb.append("Name of Student must never be null ");
+        if (gpa < 0 || gpa > 4) sb.append("gpa must be in range 0 -> 4");
+        if (sb.length() > 0) throw new IllegalArgumentException(sb.toString());
     }
     
     private Student() {
     }
 
-    public static Student getByNameGpaCourses(String name, float gpa, String ... courses) {
+    public static Student getByNameGpaCourses(String name, float gpa, String... courses) {
         if (name == null) {
             throw new IllegalArgumentException("Must provide name");
         }
