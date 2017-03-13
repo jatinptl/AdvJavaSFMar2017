@@ -98,9 +98,11 @@ public class Student /*implements Comparable<Student>*/ {
         return "Student{" + "name=" + name + ", gpa=" + gpa + ", courses=" + courses + '}';
     }
 
-    private static Comparator<Student> nameComparator = (Student o1, Student o2) -> {
-        return o1.getName().compareTo(o2.getName());
-    };
+    private static Comparator<Student> nameComparator = 
+            (o1, o2) -> o1.name.compareTo(o2.name);
+//    private static Comparator<Student> nameComparator = (Student o1, Student o2) -> {
+//        return o1.getName().compareTo(o2.getName());
+//    };
 
     public static Comparator<Student> getNameComparator() {
         return nameComparator;
