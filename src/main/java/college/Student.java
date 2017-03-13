@@ -98,6 +98,21 @@ public class Student /*implements Comparable<Student>*/ {
         return "Student{" + "name=" + name + ", gpa=" + gpa + ", courses=" + courses + '}';
     }
 
+    public static StudentCriterion getSmartnessCriterion(float threshold) {
+//        float t2 = threshold + 0.1F;
+        StudentCriterion rv = s -> s.gpa > threshold;
+//        threshold = threshold + 0.3F;
+        return rv;
+    }
+//    private static StudentCriterion smartCriterion = s -> s.gpa > 3.0F;
+//    public static StudentCriterion getSmartnessCriterion() {
+//        return smartCriterion;
+//    }
+    
+    public static StudentCriterion getEnthusiasmCriterion() {
+        return s -> s.courses.size() > 2;
+    }
+    
     private static Comparator<Student> nameComparator = 
             (o1, o2) -> o1.name.compareTo(o2.name);
 //    private static Comparator<Student> nameComparator = (Student o1, Student o2) -> {

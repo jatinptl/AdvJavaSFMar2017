@@ -112,7 +112,11 @@ public class College {
         
 //        showStudents(getSmartStudents(college, 2.7F));
 //        showStudents(getEnthusiasticStudents(college, 2));
-        showStudents(getStudentsByCriterion(college, s -> s.getGpa() > 3.0F));
-        showStudents(getStudentsByCriterion(college, s -> s.getCourses().size() >= 3));
+
+//        showStudents(getStudentsByCriterion(college, s -> s.getGpa() > 3.0F));
+//        showStudents(getStudentsByCriterion(college, s -> s.getCourses().size() >= 3));
+        
+        showStudents(getStudentsByCriterion(college, Student.getSmartnessCriterion(2.7F)));
+        showStudents(getStudentsByCriterion(college, Student.getEnthusiasmCriterion()));
     }
 }
