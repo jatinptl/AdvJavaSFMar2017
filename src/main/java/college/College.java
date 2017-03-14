@@ -8,6 +8,15 @@ import java.util.List;
 interface Criterion<E> {
 
     boolean test(E s);
+    default Criterion<E> and(Criterion<E> other) {
+        return e -> this.test(e) && other.test(e);
+    }
+    default Criterion<E> or(Criterion<E> other) {
+        return e -> this.test(e) || other.test(e);
+    }
+    default Criterion<E> negate() {
+        return e -> ! this.test(e);
+    }
 }
 
 public class College {
@@ -124,11 +133,30 @@ public class College {
             }
         };
         show(getByCriterion(college, Student.getSmartnessCriterion(2.7F)));
-        show(getByCriterion(college, Student.getEnthusiasmCriterion()));
+        show(getByCriterion(college, 
+                Student.getEnthusiasmCriterion()
+                        .and(
+                                Student.getSmartnessCriterion(3.7F)
+                                        .negate())));
         show(getByCriterion(college, co));
         
         List<String> lString = Arrays.asList("Fred", "Jim", "Sheila", "William");
         show(getByCriterion(lString, s -> s.length() > 4));
+        
+        college.sort(Comparator.comparing(s->s.getName()));
+        show(college);
+        Comparator<Student> byName = Comparator.comparing(s->s.getName());
+        Comparator<Student> byGpa = Comparator.comparingDouble(s->s.getGpa());
+        Comparator<Student> byRevGpa = byGpa.reversed();
+        college.sort(byName.thenComparing(byRevGpa));
+        
+        
+        
+        
+        
+        Comparator<Student> byNameThenGpa = Comparator.<Student, String>comparing(s->s.getName())
+                .thenComparing(Comparator.comparing(s->s.getGpa()));
+        show(college);
         
     }
 }
