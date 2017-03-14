@@ -10,12 +10,15 @@ import java.util.Spliterator;
 import java.util.function.UnaryOperator;
 
 public class ListOfClothing<E extends Colored & Sized> implements List<E> {
+
+    // DELEGATION example, incomplete, but illustrative
     private List<E> theList = new ArrayList<>();
 
     public boolean itemsAreValid(int idx1, int idx2) {
 //        return theList.get(idx1).getColor().equ...
+        return true;
     }
-    
+
     @Override
     public int size() {
         return theList.size();

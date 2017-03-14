@@ -1,8 +1,14 @@
 package generics;
 
-public class Pair <E> {
+public class Pair<E> {
+
     private E left;
     private E right;
+
+    // CANNOT refer to the variable in a static!
+//    public static E getOne() {
+//        return null;
+//    }
 
     public Pair(E left, E right) {
         this.left = left;
@@ -24,10 +30,10 @@ public class Pair <E> {
     public void setRight(E right) {
         this.right = right;
     }
-    
+
     @Override
     public String toString() {
         return "Pair{" + "left=" + left + ", right=" + right + '}';
     }
-    
+
 }

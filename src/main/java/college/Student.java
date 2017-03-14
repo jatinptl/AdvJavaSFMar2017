@@ -98,9 +98,9 @@ public class Student /*implements Comparable<Student>*/ {
         return "Student{" + "name=" + name + ", gpa=" + gpa + ", courses=" + courses + '}';
     }
 
-    public static StudentCriterion getSmartnessCriterion(float threshold) {
+    public static Criterion<Student> getSmartnessCriterion(float threshold) {
 //        float t2 = threshold + 0.1F;
-        StudentCriterion rv = s -> s.gpa > threshold;
+        Criterion<Student> rv = s -> s.gpa > threshold;
 //        threshold = threshold + 0.3F;
         return rv;
     }
@@ -109,7 +109,7 @@ public class Student /*implements Comparable<Student>*/ {
 //        return smartCriterion;
 //    }
     
-    public static StudentCriterion getEnthusiasmCriterion() {
+    public static Criterion<Student> getEnthusiasmCriterion() {
         return s -> s.courses.size() > 2;
     }
     
