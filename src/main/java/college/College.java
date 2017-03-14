@@ -151,11 +151,10 @@ public class College {
         college.sort(byName.thenComparing(byRevGpa));
         
         
-        
-        
-        
-        Comparator<Student> byNameThenGpa = Comparator.<Student, String>comparing(s->s.getName())
+        Comparator<Student> byNameThenGpa = Comparator.comparing(Student::getName)
                 .thenComparing(Comparator.comparing(s->s.getGpa()));
+//        Comparator<Student> byNameThenGpa = Comparator.<Student, String>comparing(s->s.getName())
+//                .thenComparing(Comparator.comparing(s->s.getGpa()));
         show(college);
         
     }
